@@ -1,0 +1,79 @@
+<html>
+  <head></head>
+  <style>
+    div {
+      text-align: center;
+    }
+	
+	.main{
+	  position: absolute;
+	  left: 50%;
+	  top: 50%;
+	  transform: translate(-50%, -50%);
+	}
+  </style>
+  <body>
+    <div class="main">
+      <div>
+        <h1>Enter currency</h1>
+        <select id="currency" onchange="changeCurrency()">
+        </select>
+      </div>
+      <div>
+        <h1>Enter amount</h1>
+        <form id="paypal-link" action="./usd/paypal.html">
+          <input onchange="changeAmount()" required id="amount"  type="number"</input>
+          <br>
+          <br>
+          <input type="submit" value="CONTINUE"></input>
+        </form>
+      </div>
+      <div id="smart-button-container">
+        <div style="text-align: center;">
+          <div id="paypal-button-container"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+  
+    var currencyCodes = {"AUD":"Australian dollar","BRL":"Brazilian real ","CAD":"Canadian dollar","CNY":"Chinese Renmenbi ","CZK":"Czech koruna","DKK":"Danish krone","EUR":"Euro","HKD":"Hong Kong dollar","HUF":"Hungarian forint ","ILS":"Israeli new shekel","JPY":"Japanese yen ","MYR":"Malaysian ringgit ","MXN":"Mexican peso","TWD":"New Taiwan dollar ","NZD":"New Zealand dollar","NOK":"Norwegian krone","PHP":"Philippine peso","PLN":"Polish złoty","GBP":"Pound sterling","RUB":"Russian ruble","SGD":"Singapore dollar","SEK":"Swedish krona","CHF":"Swiss franc","THB":"Thai baht","USD":"United States dollar"};
+	
+	function loadCurrency(){
+	   var el = document.getElementById("currency");
+	   var optionEl = document.createElement("OPTION");
+	   var count = 0;
+	   for (item in currencyCodes){
+	      optionEl.value = item;
+		  optionEl.innerHTML = item + " " + currencyCodes[item];
+		  optionEl = document.createElement("OPTION");
+		  if (item==="USD"){
+		     console.log("set " + item + " as default");
+		     optionEl.setAttribute("selected", "selected");
+		  }
+		  el.appendChild(optionEl);
+   
+	      console.log(item);
+
+		  
+	   }
+	   el
+	}
+    function changeCurrency() {
+      var currency = document.getElementById("currency").value;
+      sessionStorage.setItem("paypal-currency", currency);
+      document.getElementById("paypal-link").setAttribute("action", "./" + currency.toLowerCase() + "/paypal.html");
+      console.log(document.getElementById("paypal-link").getAttribute("action"));
+    }
+
+    function changeAmount() {
+      amount = parseInt(document.getElementById("amount").value);
+      console.log(amount);
+      sessionStorage.setItem("paypal-amount", amount);
+    }
+	
+	loadCurrency();
+    changeCurrency();
+    changeAmount();
+  </script>
+</html>
