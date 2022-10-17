@@ -1,5 +1,7 @@
 <html>
-  <head></head>
+  <head>
+
+  </head>
   <style>
     div {
       text-align: center;
@@ -16,13 +18,14 @@
     <div class="main">
       <div>
         <h1>Enter currency</h1>
-        <select id="currency" onchange="changeCurrency()">
+		<form id="paypal-link" action="./usd/paypal.html">
+        <select id="currency" required onchange="changeCurrency()">
         </select>
       </div>
       <div>
         <h1>Enter amount</h1>
-        <form id="paypal-link" action="./usd/paypal.html">
-          <input onchange="changeAmount()" required id="amount"  type="number"</input>
+        
+          <input onchange="changeAmount()" required id="amount"  min="1"  type="number"</input>
           <br>
           <br>
           <input type="submit" value="CONTINUE"></input>
@@ -34,6 +37,7 @@
         </div>
       </div>
     </div>
+	
   </body>
   <script>
   
@@ -57,7 +61,6 @@
 
 		  
 	   }
-	   el
 	}
     function changeCurrency() {
       var currency = document.getElementById("currency").value;
@@ -76,4 +79,6 @@
     changeCurrency();
     changeAmount();
   </script>
+  
+
 </html>
