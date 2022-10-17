@@ -4,13 +4,13 @@ import shutil
 
 source_dir = os.path.join(r"C:\Users\giova\Desktop\trustpay", "nzd")
 
-f = open("currencyCodes.json", "r")
+f = open("currencyCodes.json", "r", encoding="utf8")
 jsondata = json.loads(f.read())
 del jsondata["currencyCodes"]["NZD"]
 for currency in jsondata["currencyCodes"]:
   print(currency)
   currencyfolder = currency.lower()
-  currencySymbol = jsondata["currencySymbols"][currency]
+  currencySymbol = jsondata["currencySymbols"][currency]["symbol"]
   dest_dir = os.path.join(r"C:\Users\giova\Desktop\trustpay", currencyfolder)
   try:
     shutil.rmtree(dest_dir)

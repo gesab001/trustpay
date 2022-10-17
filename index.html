@@ -51,16 +51,13 @@
 	      optionEl.value = item;
 		  optionEl.innerHTML = item + " " + currencyCodes[item];
 		  optionEl = document.createElement("OPTION");
-		  if (item==="USD"){
-		     console.log("set " + item + " as default");
-		     optionEl.setAttribute("selected", "selected");
-		  }
 		  el.appendChild(optionEl);
    
 	      console.log(item);
 
 		  
 	   }
+
 	}
     function changeCurrency() {
       var currency = document.getElementById("currency").value;
